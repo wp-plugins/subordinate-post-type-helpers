@@ -3,6 +3,7 @@
 /*
 Plugin Name: Subordinate Post Type Helpers
 Description: This plugin provides a number of helpers for registering a custom post type that is subordinate to another post type.
+
 */
 
 function register_sub_post_type($post_type,$args,$parent_post_type) {
@@ -81,8 +82,6 @@ function subpost_add_to_submenu($arg1=null, $arg2=null, $arg3=null, $arg4=null) 
 
 	global $menu,$submenu;
 
-
-
 	$sub_post_type_factory = SubPostTypeFactory::getInstance();	
 	$post_types = $sub_post_type_factory->getPostTypes();
 
@@ -94,11 +93,6 @@ function subpost_add_to_submenu($arg1=null, $arg2=null, $arg3=null, $arg4=null) 
 			remove_menu_page('edit.php?post_type=' . $post_type["post_type"]);	
 		}
 	}
-
-//if ()
-//$menu[26][4] .= ' wp-has-current-submenu wp-menu-open'; 
-//echo get_post_type($_REQUEST['post']); die();
-//print_r($menu); die();		
 
 }
 
@@ -188,10 +182,6 @@ function subpost_display_one_child($post,$sub_post_type) {
 	$output = "";
 
 	$edit_link = plugin_dir_url(__FILE__) . 'children.php?&amp;form_title=' . $sub_post_type["args"]['labels']['edit_item'] . '&amp;post=' . $post->ID . '&amp;post_parent=' . $post->post_parent . '&amp;post_type=' . $sub_post_type["post_type"] . '&amp;TB_iframe=1&amp;width=480&amp;height=440';
-	//$output .= '<p>';
-	//$output .= $post->post_title;
-	//$output .= 	'<br /><a title="' . $sub_post_type["args"]['labels']['add_new_item'] . '" class="thickbox" href="'. plugin_dir_url(__FILE__) . 'children.php?&amp;post=' . $post->ID . '&amp;post_parent=' . $post->post_parent . '&amp;post_type=' . $sub_post_type["post_type"] . '&amp;TB_iframe=1&amp;width=480&amp;height=440">' . $sub_post_type["args"]['labels']['edit_item'] . '</a>';
-	//$output .= '</p>';
 	$output .= '<tr id="post-' . $post->ID . '" class="post-' . $post->ID . '" valign="top">';
 	$output .= '<td class="post-title page-title column-title"><strong><a class="row-title thickbox" href="' . $edit_link . '" title="' . $sub_post_type["args"]['labels']['edit_item'] . '">' . esc_attr($post->post_title) . '</a></strong>';
 	$output .= '<span class="row-actions"><span class="edit"><a class="thickbox" href="' . $edit_link . '" title="' . $sub_post_type["args"]['labels']['edit_item'] . '">' . $sub_post_type["args"]['labels']['edit_item'] . '</a></span></td>';
@@ -199,11 +189,6 @@ function subpost_display_one_child($post,$sub_post_type) {
 	$output .= apply_filters("subpost_display_column","",$post,$sub_post_type);
 
 	$output .= "</tr>";
-
-	// apply global filter
-	// apply post_type specific filter to output
-
-	//$output = '<li id="' . $post->post_type . '-' . $post->ID . '">' . $output . '</li>';
 
 	return $output;
 
