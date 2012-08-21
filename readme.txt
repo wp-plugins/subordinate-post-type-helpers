@@ -1,5 +1,6 @@
 === Plugin Name ===
 Contributors: randyhoyt
+Tags: custom post types
 Requires at least: 3.4.1
 Tested up to: 3.4.1f
 Stable tag: 0.1
